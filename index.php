@@ -31,6 +31,11 @@ and open the template in the editor.
                 $listaPreguntas[$i][7]= $resultado['correcta'];
             }
            
+            
+            // en este punto tenemos en el array todas las preguntas y sus respuestas
+            
+            
+            
             $preguntaElegida = rand(0,$num_filas-1);
             $r1 = rand(3,6);
             $r2 = rand(3,6); while ($r2 == $r1){$r2 = rand(3,6);}
@@ -38,6 +43,7 @@ and open the template in the editor.
             $r4 = rand(3,6); while ($r4 == $r1 || $r4 == $r2 || $r4 == $r3){$r4 = rand(3,6);}
         
 //            $numeros = range(3, 6);
+//            Author: Alejandro
 //            shuffle($numeros);
 //            foreach ($numeros as $numero) {
 //                echo "$numero ";
@@ -48,25 +54,15 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <button class="btn btn-block btn-warning disabled">
-                        <?php echo $listaPreguntas[$preguntaElegida][2];?>
-                    </button>
+                    <button id="enunciado" class="btn btn-block btn-warning disabled"></button>
                     <br><br>
-                    <button class="btn btn-block btn-primary " onclick="chequeaRespuesta();">
-                        <?php echo $listaPreguntas[$preguntaElegida][$r1];?>
-                    </button> 
+                    <button id="r1" class="btn btn-block btn-primary " onclick="chequeaRespuesta();"></button> 
                     <br><br>
-                    <button class="btn btn-block btn-primary ">
-                        <?php echo $listaPreguntas[$preguntaElegida][$r2];?>
-                    </button> 
+                    <button id="r2" class="btn btn-block btn-primary " onclick="chequeaRespuesta();"></button> 
                     <br><br>
-                    <button class="btn btn-block btn-primary ">
-                        <?php echo $listaPreguntas[$preguntaElegida][$r3];?>
-                    </button> 
+                    <button id="r3" class="btn btn-block btn-primary " onclick="chequeaRespuesta();"></button> 
                     <br><br>                                                            
-                    <button class="btn btn-block btn-primary ">
-                        <?php echo $listaPreguntas[$preguntaElegida][$r4];?>
-                    </button> 
+                    <button id="r4" class="btn btn-block btn-primary " onclick="chequeaRespuesta();"></button> 
                 </div>
                 <div class="col-md-3"></div>
             </div>
@@ -75,5 +71,22 @@ and open the template in the editor.
         
         <script src="js/jquery-1.12.0.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script>
+        var arrayPreguntas;
+        
+        function chequeaRespuesta(){
+            var pregunta = Math.floor(Math.random() * 3) 
+            $('#enunciado').html(arrayPreguntas[pregunta][2]);
+        }    
+            
+            
+        $(document).ready(function(){
+            arrayPreguntas = <?php echo json_encode($listaPreguntas);?>;
+            
+            
+            
+        });
+        
+        </script>
     </body>
 </html>
