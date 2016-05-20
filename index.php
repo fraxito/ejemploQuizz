@@ -43,7 +43,7 @@ and open the template in the editor.
             $r4 = rand(3,6); while ($r4 == $r1 || $r4 == $r2 || $r4 == $r3){$r4 = rand(3,6);}
         
 //            $numeros = range(3, 6);
-//            Author: Alejandro
+//            Author: Alejandro Dietta
 //            shuffle($numeros);
 //            foreach ($numeros as $numero) {
 //                echo "$numero ";
@@ -74,15 +74,26 @@ and open the template in the editor.
         <script>
         var arrayPreguntas;
         
-        function chequeaRespuesta(){
-            var pregunta = Math.floor(Math.random() * 3) 
+        //desordena una array
+        function desordena(o){ //v1.0
+            for(var ja, xa, ia = o.length; ia; ja = Math.floor(Math.random() * ia), xa = o[--ia], o[ia] = o[ja], o[ja] = xa);
+            return o;
+        };
+
+        function cambiaPregunta(){
+            var pregunta = Math.floor(Math.random() * <?php echo sizeof($listaPreguntas);?>); 
             $('#enunciado').html(arrayPreguntas[pregunta][2]);
+            $('#r1').html(arrayPreguntas[pregunta][3]);
+            $('#r2').html(arrayPreguntas[pregunta][4]);
+            $('#r3').html(arrayPreguntas[pregunta][5]);
+            $('#r4').html(arrayPreguntas[pregunta][6]);
         }    
             
             
         $(document).ready(function(){
             arrayPreguntas = <?php echo json_encode($listaPreguntas);?>;
             
+            cambiaPregunta();
             
             
         });
