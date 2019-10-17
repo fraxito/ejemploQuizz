@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -15,19 +11,19 @@ and open the template in the editor.
             include('./funciones.php');
             $mysqli = conectaBBDD();
         
-            $consulta = $mysqli -> query("SELECT * FROM Preguntas ;");
+            $consulta = $mysqli -> query("SELECT * FROM preguntas ;");
             $num_filas = $consulta -> num_rows;
             $listaPreguntas = array();
             
             for ($i = 0; $i<$num_filas; $i++){
                 $resultado = $consulta ->fetch_array();
-                $listaPreguntas[$i][0]= $resultado['id'];
+                $listaPreguntas[$i][0]= $resultado['numero'];
                 $listaPreguntas[$i][1]= $resultado['tema'];
                 $listaPreguntas[$i][2]= $resultado['enunciado'];
-                $listaPreguntas[$i][3]= $resultado['R1'];
-                $listaPreguntas[$i][4]= $resultado['R2'];
-                $listaPreguntas[$i][5]= $resultado['R3'];
-                $listaPreguntas[$i][6]= $resultado['R4'];
+                $listaPreguntas[$i][3]= $resultado['r1'];
+                $listaPreguntas[$i][4]= $resultado['r2'];
+                $listaPreguntas[$i][5]= $resultado['r3'];
+                $listaPreguntas[$i][6]= $resultado['r4'];
                 $listaPreguntas[$i][7]= $resultado['correcta'];
             }
            
